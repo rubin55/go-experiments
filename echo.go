@@ -8,7 +8,8 @@ import (
 
 // A comment about the main function.
 func main() {
-    //Make it an iterator with index and print.
+    //Todo 1: Make it an iterator with index and print.
+    //Todo 2: Implement metrics for performance.
 	fmt.Println(strings.Join(os.Args[1:], " "))
 }
 
