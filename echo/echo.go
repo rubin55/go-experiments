@@ -1,15 +1,10 @@
 package echo
 
 import (
-	"fmt"
 	"os"
+	"strings"
 )
 
-func Echo() {
-	s, sep := "", ""
-	for _, arg := range os.Args[1:] {
-		s += sep + arg
-		sep = " "
-	}
-	fmt.Println(s)
+func Echo() string {
+	return strings.Join(os.Args[1:], " ")
 }
