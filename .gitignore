@@ -23,5 +23,8 @@ _testmain.go
 *.test
 *.prof
 
+# Binary output directories
+**/bin
+
 # IDEs, Editors, settings..
 **/.idea
