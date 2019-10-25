@@ -2,9 +2,16 @@ package echo
 
 import (
 	"os"
-	"strings"
+	"strconv"
 )
 
 func Echo() string {
-	return strings.Join(os.Args[:], " ")
+	s, sep := "", ""
+	for key, val := range os.Args[1:] {
+		s += sep + strconv.Itoa(key)
+		sep = " "
+		s += sep + val
+	}
+
+	return s
 }
