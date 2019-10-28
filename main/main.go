@@ -10,5 +10,5 @@ import (
 
 func main() {
 	fmt.Println(hello.Hello() + " " + echo.Echo(os.Args))
-	fmt.Println(unique.Unique(os.Stdin))
+	fmt.Println(unique.NewUnique(os.Args[1:]))
 }

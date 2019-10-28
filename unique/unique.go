@@ -8,14 +8,11 @@ import (
 
 type File = os.File
 
-func Unique(i *File) string {
+func Unique(f *File) string {
 	s := ""
 	counts := make(map[string]int)
-	input :=bufio.NewScanner(i)
-
-	for input.Scan() {
-		counts[input.Text()]++
-	}
+	countLines(f, counts)
+	f.Close()
 
 	for line, n := range counts {
 		if n > 0 {
@@ -24,4 +21,33 @@ func Unique(i *File) string {
 	}
 
 	return s
+}
+
+func NewUnique(files []string) string {
+	s := ""
+	counts := make(map[string]int)
+
+	for _, arg := range files {
+		f, err := os.Open(arg)
+		if err != nil {
+			fmt.Fprintf(os.Stderr, "unique: %v\n", err)
+			continue
+		}
+		countLines(f, counts)
+		f.Close()
+	}
+
+	for line, n := range counts {
+		if n > 1 {
+			s += fmt.Sprintf("%d\t%s\n", n, line)
+		}
+	}
+	return s
+}
+
+func countLines(f *File, counts map[string]int) {
+	i := bufio.NewScanner(f)
+	for i.Scan() {
+		counts[i.Text()]++
+	}
 }
